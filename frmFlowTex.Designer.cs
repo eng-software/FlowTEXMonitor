@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFlowTex));
             this.tmrRefresh = new System.Windows.Forms.Timer(this.components);
-            this.icoFlowTEX = new System.Windows.Forms.PictureBox();
             this.comboSerialFlowTex = new System.Windows.Forms.ComboBox();
             this.btnAbrirFlowTEX = new System.Windows.Forms.Button();
             this.lblTemperature = new System.Windows.Forms.Label();
@@ -56,20 +55,21 @@
             this.btnClrZero = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.lblStandarization = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.icoFlowTEX)).BeginInit();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnChangeI2CAddress = new System.Windows.Forms.Button();
+            this.edtI2CAddress = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.icoFlowTEX = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.icoFlowTEX)).BeginInit();
             this.SuspendLayout();
             // 
             // tmrRefresh
             // 
             this.tmrRefresh.Enabled = true;
             this.tmrRefresh.Tick += new System.EventHandler(this.tmrRefresh_Tick);
-            // 
-            // icoFlowTEX
-            // 
-            resources.ApplyResources(this.icoFlowTEX, "icoFlowTEX");
-            this.icoFlowTEX.Name = "icoFlowTEX";
-            this.icoFlowTEX.TabStop = false;
             // 
             // comboSerialFlowTex
             // 
@@ -216,10 +216,67 @@
             resources.ApplyResources(this.lblStandarization, "lblStandarization");
             this.lblStandarization.Name = "lblStandarization";
             // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // btnChangeI2CAddress
+            // 
+            resources.ApplyResources(this.btnChangeI2CAddress, "btnChangeI2CAddress");
+            this.btnChangeI2CAddress.Name = "btnChangeI2CAddress";
+            this.btnChangeI2CAddress.UseVisualStyleBackColor = true;
+            this.btnChangeI2CAddress.Click += new System.EventHandler(this.btnChangeI2CAddress_Click);
+            // 
+            // edtI2CAddress
+            // 
+            resources.ApplyResources(this.edtI2CAddress, "edtI2CAddress");
+            this.edtI2CAddress.Name = "edtI2CAddress";
+            this.edtI2CAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtI2CAddress_KeyDown);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button3.BackgroundImage = global::FlowTEXMonitor.Properties.Resources.usaflag;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button2.BackgroundImage = global::FlowTEXMonitor.Properties.Resources.jpflag;
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button1.BackgroundImage = global::FlowTEXMonitor.Properties.Resources.brflag;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // icoFlowTEX
+            // 
+            resources.ApplyResources(this.icoFlowTEX, "icoFlowTEX");
+            this.icoFlowTEX.Name = "icoFlowTEX";
+            this.icoFlowTEX.TabStop = false;
+            // 
             // frmFlowTex
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.btnChangeI2CAddress);
+            this.Controls.Add(this.edtI2CAddress);
             this.Controls.Add(this.lblStandarization);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnClrZero);
@@ -246,8 +303,8 @@
             this.MinimizeBox = false;
             this.Name = "frmFlowTex";
             this.Load += new System.EventHandler(this.frmFlowTex_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.icoFlowTEX)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.icoFlowTEX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,6 +337,12 @@
         private System.Windows.Forms.Button btnClrZero;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblStandarization;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnChangeI2CAddress;
+        private System.Windows.Forms.TextBox edtI2CAddress;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

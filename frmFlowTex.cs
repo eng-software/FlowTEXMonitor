@@ -1,5 +1,5 @@
 ﻿/*
-   This example code is in the Public Domain
+   Th/s example code is in the Public Domain
 
    This software is distributed on an "AS IS" BASIS, 
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
@@ -27,6 +27,10 @@ using System.IO.Ports;
 using TEX.FlowUnit;
 using System.Diagnostics;
 using System.Threading;
+using System.Globalization;
+using System.Resources;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace FlowTEX
 {
@@ -40,11 +44,23 @@ namespace FlowTEX
 
         bool wasConnected = false;
 
+        Binding I2CaddressBinding;
+        public byte I2CAddress
+        {
+            get;
+            set;
+        }
+
         BindingSource FlowUnitSource; 
         Stopwatch Stopwatch = new Stopwatch();
+        private ResourceManager TextosManager;
+        private CultureInfo culture;
 
         public frmFlowTex()
         {
+            TextosManager = new ResourceManager("FlowTEXMonitor.Textos", typeof(frmFlowTex).Assembly);
+            culture = CultureInfo.CurrentUICulture;
+
             //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ja-JP");
             InitializeComponent();
             FlowTEX = new cFlowTEX();
@@ -61,6 +77,10 @@ namespace FlowTEX
             lblVersion.Text = "";
             lblModel.Text = "";
 
+            I2CaddressBinding = edtI2CAddress.DataBindings.Add("Text", this, "I2CAddress");
+            I2CaddressBinding.Format += I2CaddressBinding_Format;
+            I2CaddressBinding.Parse += I2CaddressBinding_Parse;
+
             FlowUnitSource = new BindingSource(FlowUnits.Names, null);
             comboFlowUnit.DataSource = FlowUnitSource;
             comboFlowUnit.ValueMember = "Key";
@@ -68,6 +88,51 @@ namespace FlowTEX
             comboFlowUnit.SelectedValue = eFlowUnit.eCCM;
 
             progressBar1.Value = 0;
+        }
+
+        private void I2CaddressBinding_Parse(object sender, ConvertEventArgs e)
+        {
+            string s = (string)e.Value;
+            byte result = 0;
+            bool bSuccess = false;
+
+            if ((s != null) &&
+                ((s.StartsWith("0x")) || (s.StartsWith("0X"))) &&
+                byte.TryParse(s.Substring(2), System.Globalization.NumberStyles.AllowHexSpecifier, null, out result))
+            {
+                if ((result > 0) && (result <= 0x7F))
+                {
+                    e.Value = result;
+                    bSuccess = true;
+                }
+                else
+                {
+                    e.Value = I2CAddress;
+                }
+            }
+            else if (byte.TryParse(s, out result))
+            {
+                if ((result > 0) && (result <= 0x7F))
+                {
+                    e.Value = result;
+                    bSuccess = true;
+                }
+                else
+                {
+                    e.Value = I2CAddress;
+                }
+            }
+
+            if (!bSuccess)
+            { MessageBox.Show("Valor inválido!\n Valores permitidos 0x01 a 0x7F", "Valor Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
+
+        private void I2CaddressBinding_Format(object sender, ConvertEventArgs e)
+        {
+            if (e.DesiredType == typeof(string))
+            {
+                e.Value = "0x" + (string)((byte)e.Value).ToString("X2");
+            }
         }
 
         private void ComboSerialFlowTex_DropDown(object sender, EventArgs e)
@@ -165,6 +230,12 @@ namespace FlowTEX
                         lblVersion.Text = version;
                     }
 
+                    if (FlowTEX.getI2CAddress(out byte Address))
+                    {
+                        I2CAddress = Address;
+                        I2CaddressBinding.ReadValue();
+                    }
+
                 }
 
                 Flow.Value = FlowTEX.getFlow();                
@@ -220,38 +291,37 @@ namespace FlowTEX
                 FlowTEX.disconnect();
             }
 
-            if (Thread.CurrentThread.CurrentUICulture.Name == "pt-BR")
+            if (!FlowTEX.isConnected())
             {
-                if (!FlowTEX.isConnected())
-                {
-                    btnAbrirFlowTEX.Text = "Abrir";
-                }
-                else
-                {
-                    btnAbrirFlowTEX.Text = "Fechar";
-                }
-            }
-            else if (Thread.CurrentThread.CurrentUICulture.Name == "ja-JP")
-            {
-                if (!FlowTEX.isConnected())
-                {
-                    btnAbrirFlowTEX.Text = "開く";
-                }
-                else
-                {
-                    btnAbrirFlowTEX.Text = "閉じる";
-                }
+                btnAbrirFlowTEX.Text = TextosManager.GetString("Abrir", culture);
             }
             else
             {
-                if (!FlowTEX.isConnected())
-                {
-                    btnAbrirFlowTEX.Text = "Open";
-                }
+                btnAbrirFlowTEX.Text = TextosManager.GetString("Fechar", culture);
+            }
+        }
+
+        private void edtI2CAddress_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                Validate();
+            }
+        }
+
+       // TituloAlterarI2C Alteração de endereço de I2C
+
+
+        private void btnChangeI2CAddress_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(TextosManager.GetString("AlertaTrocaI2C", culture), TextosManager.GetString("TituloAlterarI2C", culture), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                if (FlowTEX.setI2CAddress(I2CAddress))
+                { MessageBox.Show(TextosManager.GetString("SucessoTrocaI2C", culture) , TextosManager.GetString("TituloAlterarI2C", culture), MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 else
-                {
-                    btnAbrirFlowTEX.Text = "Close";
-                }
+                { MessageBox.Show(TextosManager.GetString("FalhaTrocaI2C", culture) , TextosManager.GetString("TituloAlterarI2C", culture), MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
         }
 
@@ -300,7 +370,47 @@ namespace FlowTEX
 
         private void frmFlowTex_Load(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void ApplyLanguage(string cultureCode)
+        {
+            culture = new CultureInfo(cultureCode);
+
+            // Define a cultura atual
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureCode);
+
+            // Cria um ResourceManager para gerenciar os recursos do formulário
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(frmFlowTex));
+
+            // Aplica os recursos para cada controle no formulário
+            foreach (Control control in this.Controls)
+            {
+                resources.ApplyResources(control, control.Name);
+            }
+
+            // Também aplica os recursos ao próprio formulário (por exemplo, título)
+            resources.ApplyResources(this, "$this");
+
+            lblSerialNumber.Text = "";
+            lblVersion.Text = "";
+            lblModel.Text = "";
+            lblTemperature.Text = "";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ApplyLanguage("ja-JP");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ApplyLanguage("pt-BR");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ApplyLanguage("en");
 
         }
     }
