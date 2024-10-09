@@ -81,10 +81,10 @@ namespace FlowTEX
             I2CaddressBinding.Format += I2CaddressBinding_Format;
             I2CaddressBinding.Parse += I2CaddressBinding_Parse;
 
-            FlowUnitSource = new BindingSource(FlowUnits.Names, null);
-            comboFlowUnit.DataSource = FlowUnitSource;
+            FlowUnitSource = new BindingSource(FlowUnits.Names, null);            
             comboFlowUnit.ValueMember = "Key";
             comboFlowUnit.DisplayMember = "Value";
+            comboFlowUnit.DataSource = FlowUnitSource;
             comboFlowUnit.SelectedValue = eFlowUnit.eCCM;
 
             progressBar1.Value = 0;

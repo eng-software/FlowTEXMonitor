@@ -152,7 +152,7 @@ namespace TEX.FlowUnit
 
             new sFlowResolution()
             {
-                range = 50,  //50 a 500ccm
+                range = 50,  //50 a 200ccm
                 resolutions = new Dictionary<eFlowUnit, UnitResolution<eFlowUnit>>()
                 {     
                     
@@ -166,9 +166,9 @@ namespace TEX.FlowUnit
                     {   eFlowUnit.eML_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eML_H       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eLPM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e1 )     },
-                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eL_H        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e1 )     },
-                    {   eFlowUnit.eM3_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eM3_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  5,  eResolutionIncrementSize.e2 )     },
                     {   eFlowUnit.eM3_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eMBAR_LS    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e2 )     },
                 }
@@ -176,7 +176,55 @@ namespace TEX.FlowUnit
 
             new sFlowResolution()
             {
-                range = 10000,  //10,000 a 50,000ccm
+                range = 500,  
+                resolutions = new Dictionary<eFlowUnit, UnitResolution<eFlowUnit>>()
+                {
+
+                    {   eFlowUnit.eMM3_S      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eCCM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCCH        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCM3_S      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eCM3_MIN    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCM3_H      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eML_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eML_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eML_H       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eLPM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_H        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eM3_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eM3_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eMBAR_LS    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e2 )     },
+                }
+            },
+
+            new sFlowResolution()
+            {
+                range = 5000,
+                resolutions = new Dictionary<eFlowUnit, UnitResolution<eFlowUnit>>()
+                {
+
+                    {   eFlowUnit.eMM3_S      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eCCM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCCH        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCM3_S      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eCM3_MIN    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCM3_H      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eML_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eML_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eML_H       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eLPM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_H        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eM3_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  4,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eM3_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eMBAR_LS    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  3,  eResolutionIncrementSize.e2 )     },
+                }
+            },
+
+            new sFlowResolution()
+            {
+                range = 10000,
                 resolutions = new Dictionary<eFlowUnit, UnitResolution<eFlowUnit>>()
                 {
                     {   eFlowUnit.eMM3_S      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e2 )     },
@@ -189,11 +237,57 @@ namespace TEX.FlowUnit
                     {   eFlowUnit.eML_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eML_H       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -1,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eLPM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
-                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eL_H        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eM3_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e2 )     },
                     {   eFlowUnit.eM3_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eMBAR_LS    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e2 )     },
+                }
+            },
+
+            new sFlowResolution()
+            {
+                range = 20000,
+                resolutions = new Dictionary<eFlowUnit, UnitResolution<eFlowUnit>>()
+                {
+                    {   eFlowUnit.eMM3_S      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eCCM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCCH        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCM3_S      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eCM3_MIN    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCM3_H      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eML_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eML_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eML_H       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eLPM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_H        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eM3_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eM3_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eMBAR_LS    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  2,  eResolutionIncrementSize.e2 )     },
+                }
+            },
+
+            new sFlowResolution()
+            {
+                range = 50000,
+                resolutions = new Dictionary<eFlowUnit, UnitResolution<eFlowUnit>>()
+                {
+                    {   eFlowUnit.eMM3_S      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eCCM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCCH        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCM3_S      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eCM3_MIN    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eCM3_H      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eML_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eML_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eML_H       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -2,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eLPM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_H        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eM3_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e2 )     },
+                    {   eFlowUnit.eM3_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eMBAR_LS    ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e2 )     },
                 }
             },
 
@@ -212,7 +306,7 @@ namespace TEX.FlowUnit
                     {   eFlowUnit.eML_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -1,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eML_H       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM, -2,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eLPM        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
-                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
+                    {   eFlowUnit.eL_MIN      ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  0,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eL_H        ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
                     {   eFlowUnit.eM3_S       ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e2 )     },
                     {   eFlowUnit.eM3_MIN     ,   new UnitResolution<eFlowUnit>(eFlowUnit.eCCM,  1,  eResolutionIncrementSize.e1 )     },
