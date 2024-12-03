@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FlowTEXMonitor.Properties {
+namespace FlowTEXMonitor {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace FlowTEXMonitor.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class Textos {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Textos() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FlowTEXMonitor.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FlowTEXMonitor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FlowTEXMonitor.Textos", typeof(Textos).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,72 +61,74 @@ namespace FlowTEXMonitor.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Open.
         /// </summary>
-        internal static System.Drawing.Bitmap airflow {
+        internal static string Abrir {
             get {
-                object obj = ResourceManager.GetObject("airflow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("Abrir", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Invalid value! Allowed values: 0x01 to 0x7F.
         /// </summary>
-        internal static System.Drawing.Bitmap airflow1 {
+        internal static string AlertaI2CAddrInvalido {
             get {
-                object obj = ResourceManager.GetObject("airflow1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("AlertaI2CAddrInvalido", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Do you want to change the I2C address?.
         /// </summary>
-        internal static System.Drawing.Bitmap brflag {
+        internal static string AlertaTrocaI2C {
             get {
-                object obj = ResourceManager.GetObject("brflag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("AlertaTrocaI2C", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Failed to change the address.
         /// </summary>
-        internal static System.Drawing.Bitmap jpflag {
+        internal static string FalhaTrocaI2C {
             get {
-                object obj = ResourceManager.GetObject("jpflag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("FalhaTrocaI2C", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Close.
         /// </summary>
-        internal static System.Drawing.Bitmap logo {
+        internal static string Fechar {
             get {
-                object obj = ResourceManager.GetObject("logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("Fechar", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Address successfully changed!.
         /// </summary>
-        internal static System.Drawing.Bitmap usaflag {
+        internal static string SucessoTrocaI2C {
             get {
-                object obj = ResourceManager.GetObject("usaflag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("SucessoTrocaI2C", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Invalid Value.
         /// </summary>
-        internal static System.Drawing.Bitmap Volume2 {
+        internal static string TituloAlertaI2CAddrInvalido {
             get {
-                object obj = ResourceManager.GetObject("Volume2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("TituloAlertaI2CAddrInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I2C address change.
+        /// </summary>
+        internal static string TituloAlterarI2C {
+            get {
+                return ResourceManager.GetString("TituloAlterarI2C", resourceCulture);
             }
         }
     }

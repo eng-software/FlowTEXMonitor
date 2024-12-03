@@ -305,10 +305,17 @@ namespace TEX
                             TheSerialPort.Close();
                         }
 
-                        if( TheSerialPort.IsOpen )
-                        {                            
+                        if (TheSerialPort.IsOpen)
+                        {
                             SerialMode = eSerialMode.eTEXNET;
                             bError = false;
+                        }
+                        else
+                        {
+                            if ((RequestStatus == eRequestStatus.eNEW_REQUEST)||(RequestStatus == eRequestStatus.eWAITTING))
+                            {
+                                RequestStatus = eRequestStatus.eFAIL;
+                            }
                         }
                         break;
                     }
@@ -421,7 +428,14 @@ namespace TEX
 
                             if(RequestStatus == eRequestStatus.eNEW_REQUEST)
                             {
-                                RequestMState = eRequestMState.eUSER_REQUEST;
+                                if (bError)
+                                {
+                                    RequestStatus = eRequestStatus.eFAIL;                                    
+                                }
+                                else
+                                {
+                                    RequestMState = eRequestMState.eUSER_REQUEST;
+                                }
                             }
                             else
                             {
@@ -485,7 +499,7 @@ namespace TEX
 
         public bool getModel(out string model)
         {
-            if(bActive)
+            if((bActive)&&(isConnected()))
             {
                 while((RequestStatus == eRequestStatus.eNEW_REQUEST) || (RequestStatus == eRequestStatus.eWAITTING))
                 {
@@ -520,7 +534,7 @@ namespace TEX
         
         public bool getSerialNumber(out string SerialNumber)
         {
-            if(bActive)
+            if ((bActive) && (isConnected()))
             {
                 while((RequestStatus == eRequestStatus.eNEW_REQUEST) || (RequestStatus == eRequestStatus.eWAITTING))
                 {
@@ -555,7 +569,7 @@ namespace TEX
 
         public bool getVersion(out string version)
         {
-            if(bActive)
+            if ((bActive) && (isConnected()))
             {
                 while((RequestStatus == eRequestStatus.eNEW_REQUEST) || (RequestStatus == eRequestStatus.eWAITTING))
                 {
@@ -590,7 +604,7 @@ namespace TEX
 
         public bool getStatus(out UInt32 FwChks, out UInt32 FwCalcChks)
         {
-            if(bActive)
+            if ((bActive) && (isConnected()))
             {
                 while((RequestStatus == eRequestStatus.eNEW_REQUEST) || (RequestStatus == eRequestStatus.eWAITTING))
                 {
@@ -639,7 +653,7 @@ namespace TEX
 
         public bool setI2CAddress(byte Address)
         {
-            if(bActive)
+            if ((bActive) && (isConnected()))
             {
                 setLocked(false);
                 while((RequestStatus == eRequestStatus.eNEW_REQUEST) || (RequestStatus == eRequestStatus.eWAITTING))
@@ -670,7 +684,7 @@ namespace TEX
 
         public bool getI2CAddress(out byte Address)
         {
-            if(bActive)
+            if ((bActive) && (isConnected()))
             {
                 while((RequestStatus == eRequestStatus.eNEW_REQUEST) || (RequestStatus == eRequestStatus.eWAITTING))
                 {
@@ -705,7 +719,7 @@ namespace TEX
 
         public bool setLocked(bool Locked)
         {
-            if(bActive)
+            if ((bActive) && (isConnected()))
             {
                 while((RequestStatus == eRequestStatus.eNEW_REQUEST) || (RequestStatus == eRequestStatus.eWAITTING))
                 {
@@ -760,7 +774,7 @@ namespace TEX
 
         public bool Save()
         {
-            if(bActive)
+            if ((bActive) && (isConnected()))
             {
                 setLocked(false);
                 while((RequestStatus == eRequestStatus.eNEW_REQUEST) || (RequestStatus == eRequestStatus.eWAITTING))

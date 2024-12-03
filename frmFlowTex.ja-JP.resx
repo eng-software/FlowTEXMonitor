@@ -119,10 +119,13 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="comboSerialFlowTex.Location" type="System.Drawing.Point, System.Drawing">
-    <value>104, 8</value>
+    <value>98, 8</value>
   </data>
   <data name="comboSerialFlowTex.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 27</value>
+    <value>135, 27</value>
+  </data>
+  <data name="btnAbrirFlowTEX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>237, 6</value>
   </data>
   <data name="btnAbrirFlowTEX.Text" xml:space="preserve">
     <value>開く</value>
@@ -132,7 +135,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABK
-        CQAAAk1TRnQBSQFMAgEBAgEAAfABAQHwAQEBFAEAARQBAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CQAAAk1TRnQBSQFMAgEBAgEAARQBAgEYAQIBFAEAARQBAAT/AQkBEAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABUAMAARQDAAEBAQABCAUAAUABBhgAAYACAAGAAwACgAEAAYADAAGAAQABgAEAAoACAAPAAQABwAHc
         AcABAAHwAcoBpgEAATMFAAEzAQABMwEAATMBAAIzAgADFgEAAxwBAAMiAQADKQEAA1UBAANNAQADQgEA
         AzkBAAGAAXwB/wEAAlAB/wEAAZMBAAHWAQAB/wHsAcwBAAHGAdYB7wEAAdYC5wEAAZABqQGtAgAB/wEz
@@ -171,7 +174,7 @@
         ARcBGzIAAfIBuwGWAncBlgG7AfIMAAEaAZMBFwJGARcBkwEaLgABQgFNAT4HAAE+AwABKAMAAVADAAEU
         AwABAQEAAQEFAAHwFwAD/wEAAfwBAwH/AcABPwcAAfABAAH/AQABDwcAAeABAAF+AQABBwcAAcABAAE8
         AQABAwcAAYABAAEYAQABAQcAAYABAAEYAQABAWcAAYABAAEYAQABAQcAAYABAAEYAQABAQcAAcABAAE8
-        AQABAwcAAeABAAF+AQABBwcAAfABAAH/AQABDwcAAfwBAwH/AcABPwcACw==
+        AQABAwcAAeABAAF+AQABBwcAAfABAAH/AQABDwcAAfwBAwH/AcABPx0ACw==
 </value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
@@ -210,11 +213,20 @@
   <data name="label7.Text" xml:space="preserve">
     <value>バージョン</value>
   </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 56</value>
+  </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 16</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>ユニット</value>
+  </data>
+  <data name="comboFlowUnit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 52</value>
+  </data>
+  <data name="comboFlowUnit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>246, 27</value>
   </data>
   <data name="btnZero.Text" xml:space="preserve">
     <value>ゼロにする</value>
@@ -239,6 +251,21 @@
   </data>
   <data name="btnChangeI2CAddress.Text" xml:space="preserve">
     <value> 変更する</value>
+  </data>
+  <data name="chkEnableFilter.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="chkEnableFilter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
+  </data>
+  <data name="chkEnableFilter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="chkEnableFilter.Text" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="icoFlowTEX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>329, 10</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -41,7 +41,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblModel = new System.Windows.Forms.Label();
-            this.lblSerialNumber = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblFlow = new System.Windows.Forms.Label();
@@ -50,7 +49,7 @@
             this.btnZero = new System.Windows.Forms.Button();
             this.lblUnit = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progbarZero = new System.Windows.Forms.ProgressBar();
             this.timerZero = new System.Windows.Forms.Timer(this.components);
             this.btnClrZero = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -58,11 +57,25 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnChangeI2CAddress = new System.Windows.Forms.Button();
             this.edtI2CAddress = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.trackFilterOrder = new System.Windows.Forms.TrackBar();
+            this.chkEnableFilter = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblSerialNumber = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnEnglish = new System.Windows.Forms.Button();
+            this.btnJapan = new System.Windows.Forms.Button();
+            this.btnBrazil = new System.Windows.Forms.Button();
             this.icoFlowTEX = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackFilterOrder)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.icoFlowTEX)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,6 +134,7 @@
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
+            this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Name = "label5";
             // 
             // lblModel
@@ -128,12 +142,6 @@
             this.lblModel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             resources.ApplyResources(this.lblModel, "lblModel");
             this.lblModel.Name = "lblModel";
-            // 
-            // lblSerialNumber
-            // 
-            this.lblSerialNumber.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            resources.ApplyResources(this.lblSerialNumber, "lblSerialNumber");
-            this.lblSerialNumber.Name = "lblSerialNumber";
             // 
             // lblVersion
             // 
@@ -170,7 +178,6 @@
             resources.ApplyResources(this.btnZero, "btnZero");
             this.btnZero.Name = "btnZero";
             this.btnZero.UseVisualStyleBackColor = true;
-            this.btnZero.Click += new System.EventHandler(this.btnZero_Click);
             this.btnZero.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZero_MouseDown);
             this.btnZero.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnZero_MouseUp);
             // 
@@ -188,12 +195,12 @@
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
-            // progressBar1
+            // progbarZero
             // 
-            resources.ApplyResources(this.progressBar1, "progressBar1");
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.Value = 50;
+            resources.ApplyResources(this.progbarZero, "progbarZero");
+            this.progbarZero.Name = "progbarZero";
+            this.progbarZero.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progbarZero.Value = 50;
             // 
             // timerZero
             // 
@@ -219,6 +226,7 @@
             // label9
             // 
             resources.ApplyResources(this.label9, "label9");
+            this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Name = "label9";
             // 
             // btnChangeI2CAddress
@@ -230,36 +238,100 @@
             // 
             // edtI2CAddress
             // 
+            this.edtI2CAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             resources.ApplyResources(this.edtI2CAddress, "edtI2CAddress");
             this.edtI2CAddress.Name = "edtI2CAddress";
             this.edtI2CAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edtI2CAddress_KeyDown);
             // 
-            // button3
+            // trackFilterOrder
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.BackgroundImage = global::FlowTEXMonitor.Properties.Resources.usaflag;
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.trackFilterOrder.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.trackFilterOrder, "trackFilterOrder");
+            this.trackFilterOrder.Maximum = 50;
+            this.trackFilterOrder.Minimum = 1;
+            this.trackFilterOrder.Name = "trackFilterOrder";
+            this.trackFilterOrder.TickFrequency = 10;
+            this.trackFilterOrder.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackFilterOrder.Value = 1;
+            this.trackFilterOrder.Scroll += new System.EventHandler(this.trackFilterOrder_Scroll);
             // 
-            // button2
+            // chkEnableFilter
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button2.BackgroundImage = global::FlowTEXMonitor.Properties.Resources.jpflag;
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            resources.ApplyResources(this.chkEnableFilter, "chkEnableFilter");
+            this.chkEnableFilter.Name = "chkEnableFilter";
+            this.chkEnableFilter.UseVisualStyleBackColor = true;
+            this.chkEnableFilter.CheckedChanged += new System.EventHandler(this.chkEnableFilter_CheckedChanged);
             // 
-            // button1
+            // panel2
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button1.BackgroundImage = global::FlowTEXMonitor.Properties.Resources.brflag;
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.trackFilterOrder);
+            this.panel2.Controls.Add(this.chkEnableFilter);
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Name = "panel2";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.edtI2CAddress);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // lblSerialNumber
+            // 
+            this.lblSerialNumber.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            resources.ApplyResources(this.lblSerialNumber, "lblSerialNumber");
+            this.lblSerialNumber.Name = "lblSerialNumber";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::FlowTEXMonitor.Properties.Resources.airflow1;
+            resources.ApplyResources(this.pictureBox3, "pictureBox3");
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::FlowTEXMonitor.Properties.Resources.logo;
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FlowTEXMonitor.Properties.Resources.Volume2;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnEnglish
+            // 
+            this.btnEnglish.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnEnglish.BackgroundImage = global::FlowTEXMonitor.Properties.Resources.usaflag;
+            resources.ApplyResources(this.btnEnglish, "btnEnglish");
+            this.btnEnglish.Name = "btnEnglish";
+            this.btnEnglish.UseVisualStyleBackColor = false;
+            this.btnEnglish.Click += new System.EventHandler(this.btnEnglish_Click);
+            // 
+            // btnJapan
+            // 
+            this.btnJapan.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnJapan.BackgroundImage = global::FlowTEXMonitor.Properties.Resources.jpflag;
+            resources.ApplyResources(this.btnJapan, "btnJapan");
+            this.btnJapan.Name = "btnJapan";
+            this.btnJapan.UseVisualStyleBackColor = false;
+            this.btnJapan.Click += new System.EventHandler(this.btnJapan_Click);
+            // 
+            // btnBrazil
+            // 
+            this.btnBrazil.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnBrazil.BackgroundImage = global::FlowTEXMonitor.Properties.Resources.brflag;
+            resources.ApplyResources(this.btnBrazil, "btnBrazil");
+            this.btnBrazil.Name = "btnBrazil";
+            this.btnBrazil.UseVisualStyleBackColor = false;
+            this.btnBrazil.Click += new System.EventHandler(this.btnBrazil_Click);
             // 
             // icoFlowTEX
             // 
@@ -271,22 +343,24 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             resources.ApplyResources(this, "$this");
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.btnEnglish);
+            this.Controls.Add(this.btnJapan);
+            this.Controls.Add(this.btnBrazil);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnChangeI2CAddress);
-            this.Controls.Add(this.edtI2CAddress);
             this.Controls.Add(this.lblStandarization);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnClrZero);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.progbarZero);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnZero);
             this.Controls.Add(this.comboFlowUnit);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblVersion);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblSerialNumber);
             this.Controls.Add(this.lblModel);
             this.Controls.Add(this.label5);
@@ -298,12 +372,21 @@
             this.Controls.Add(this.icoFlowTEX);
             this.Controls.Add(this.comboSerialFlowTex);
             this.Controls.Add(this.btnAbrirFlowTEX);
+            this.Controls.Add(this.pictureBox3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmFlowTex";
             this.Load += new System.EventHandler(this.frmFlowTex_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackFilterOrder)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.icoFlowTEX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -323,7 +406,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblModel;
-        private System.Windows.Forms.Label lblSerialNumber;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblFlow;
@@ -332,7 +414,7 @@
         private System.Windows.Forms.Button btnZero;
         private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progbarZero;
         private System.Windows.Forms.Timer timerZero;
         private System.Windows.Forms.Button btnClrZero;
         private System.Windows.Forms.Label label8;
@@ -340,9 +422,17 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnChangeI2CAddress;
         private System.Windows.Forms.TextBox edtI2CAddress;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnBrazil;
+        private System.Windows.Forms.Button btnJapan;
+        private System.Windows.Forms.Button btnEnglish;
+        private System.Windows.Forms.TrackBar trackFilterOrder;
+        private System.Windows.Forms.CheckBox chkEnableFilter;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblSerialNumber;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 

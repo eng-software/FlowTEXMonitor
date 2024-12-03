@@ -31,13 +31,19 @@ using System.Globalization;
 using System.Resources;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using FlowTEXMonitor;
+using FlowTEXMonitor.Properties;
+using TEX.XMLParameters;
 
 namespace FlowTEX
 {
     public partial class frmFlowTex : Form
     {
         cFlowTEX FlowTEX;
-        cFlow Flow;
+        cEMAFilter FlowFilter;
+        cFlow Flow;        
+        cApplicationParameters ApplicationParameters;
+        bool loadingParameters = false;
 
         const string defaultTemperatureFormat = "0.0";
         const string defaultTemperatureUnit = "°C";
@@ -61,9 +67,10 @@ namespace FlowTEX
             TextosManager = new ResourceManager("FlowTEXMonitor.Textos", typeof(frmFlowTex).Assembly);
             culture = CultureInfo.CurrentUICulture;
 
-            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ja-JP");
             InitializeComponent();
+            loadingParameters = true;
             FlowTEX = new cFlowTEX();
+            FlowFilter = new cEMAFilter();
             Flow = new cFlow();
             lblFlow.Text = Flow.ValueString;
             lblUnit.Text = Flow.UnitName;
@@ -81,14 +88,48 @@ namespace FlowTEX
             I2CaddressBinding.Format += I2CaddressBinding_Format;
             I2CaddressBinding.Parse += I2CaddressBinding_Parse;
 
-            FlowUnitSource = new BindingSource(FlowUnits.Names, null);            
+            FlowUnitSource = new BindingSource(FlowUnits.Names, null);
             comboFlowUnit.ValueMember = "Key";
             comboFlowUnit.DisplayMember = "Value";
             comboFlowUnit.DataSource = FlowUnitSource;
             comboFlowUnit.SelectedValue = eFlowUnit.eCCM;
 
-            progressBar1.Value = 0;
+            chkEnableFilter.Checked = true;
+            trackFilterOrder.Enabled = chkEnableFilter.Checked;
+            trackFilterOrder.Value = 10;
+            FlowFilter.Alpha = 0.6d;
+            FlowFilter.Order = trackFilterOrder.Value;
+
+            progbarZero.Value = 0;
+                        
+            ApplicationParameters = new cApplicationParameters();
+            loadParameters();
         }
+
+        void saveParameters()
+        {
+            if (!loadingParameters)
+            {
+                ApplicationParameters.FilterOrder = trackFilterOrder.Value;
+                ApplicationParameters.FilterEnabled = chkEnableFilter.Checked;
+                ApplicationParameters.SelectedFlowUnit = Flow.Unit;
+                ApplicationParameters.Save();
+            }
+        }
+
+        void loadParameters()
+        {
+            loadingParameters = true;
+            ApplicationParameters.Load();            
+            trackFilterOrder.Value = ApplicationParameters.FilterOrder;
+            chkEnableFilter.Checked = ApplicationParameters.FilterEnabled;
+            Flow.Unit = ApplicationParameters.SelectedFlowUnit;
+            comboFlowUnit.SelectedValue = Flow.Unit;            
+            lblFlow.Text = Flow.ValueString;
+            lblUnit.Text = Flow.UnitName;
+            loadingParameters = false;
+        }
+
 
         private void I2CaddressBinding_Parse(object sender, ConvertEventArgs e)
         {
@@ -124,7 +165,13 @@ namespace FlowTEX
             }
 
             if (!bSuccess)
-            { MessageBox.Show("Valor inválido!\n Valores permitidos 0x01 a 0x7F", "Valor Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            {
+                
+                //MessageBox.Show("Valor inválido!\n Valores permitidos 0x01 a 0x7F", "Valor Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                MessageBox.Show(TextosManager.GetString("AlertaI2CAddrInvalido", culture),
+                                TextosManager.GetString("TituloAlertaI2CAddrInvalido", culture), 
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void I2CaddressBinding_Format(object sender, ConvertEventArgs e)
@@ -238,7 +285,14 @@ namespace FlowTEX
 
                 }
 
-                Flow.Value = FlowTEX.getFlow();                
+                double sensorFlow = FlowTEX.getFlow();
+                FlowFilter.filter(sensorFlow);
+
+                if (trackFilterOrder.Enabled)
+                { Flow.Value = FlowFilter.FilteredValue; }
+                else
+                { Flow.Value = sensorFlow;               }
+
                 lblFlow.Text = Flow.ValueString;
                 lblUnit.Text = Flow.UnitName;
                 lblTemperature.Text = FlowTEX.getTemperature().ToString(defaultTemperatureFormat) + defaultTemperatureUnit;
@@ -311,9 +365,6 @@ namespace FlowTEX
             }
         }
 
-       // TituloAlterarI2C Alteração de endereço de I2C
-
-
         private void btnChangeI2CAddress_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(TextosManager.GetString("AlertaTrocaI2C", culture), TextosManager.GetString("TituloAlterarI2C", culture), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -330,11 +381,7 @@ namespace FlowTEX
             Flow.Unit = (eFlowUnit)comboFlowUnit.SelectedValue;
             lblFlow.Text = Flow.ValueString;
             lblUnit.Text = Flow.UnitName;
-        }
-
-        private void btnZero_Click(object sender, EventArgs e)
-        {
-            
+            saveParameters();
         }
 
         private void btnZero_MouseDown(object sender, MouseEventArgs e)
@@ -352,15 +399,14 @@ namespace FlowTEX
             }
             else
             {
-                progressBar1.Value =  (int)((double)(Stopwatch.ElapsedMilliseconds / 3000.0) * 100.0);
+                progbarZero.Value =  (int)((double)(Stopwatch.ElapsedMilliseconds / 3000.0) * 100.0);
             }
-
         }
 
         private void btnZero_MouseUp(object sender, MouseEventArgs e)
         {
             timerZero.Enabled = false;
-            progressBar1.Value = 0;
+            progbarZero.Value = 0;
         }
 
         private void btnClrZero_Click(object sender, EventArgs e)
@@ -368,9 +414,17 @@ namespace FlowTEX
             FlowTEX.clearZero();
         }
 
-        private void frmFlowTex_Load(object sender, EventArgs e)
+        void resourceApplyer( Control.ControlCollection ctrlCollection, ComponentResourceManager resources)
         {
+            foreach (Control control in ctrlCollection)
+            {
+                resources.ApplyResources(control, control.Name);
 
+                if(control.HasChildren)
+                {
+                    resourceApplyer(control.Controls, resources);
+                }
+            }
         }
 
         private void ApplyLanguage(string cultureCode)
@@ -382,12 +436,7 @@ namespace FlowTEX
 
             // Cria um ResourceManager para gerenciar os recursos do formulário
             ComponentResourceManager resources = new ComponentResourceManager(typeof(frmFlowTex));
-
-            // Aplica os recursos para cada controle no formulário
-            foreach (Control control in this.Controls)
-            {
-                resources.ApplyResources(control, control.Name);
-            }
+            resourceApplyer(this.Controls, resources);
 
             // Também aplica os recursos ao próprio formulário (por exemplo, título)
             resources.ApplyResources(this, "$this");
@@ -396,21 +445,48 @@ namespace FlowTEX
             lblVersion.Text = "";
             lblModel.Text = "";
             lblTemperature.Text = "";
+
+            lblFlow.Text = Flow.ValueString;
+            lblUnit.Text = Flow.UnitName;
+            lblTemperature.Text = FlowTEX.getTemperature().ToString(defaultTemperatureFormat) + defaultTemperatureUnit;
+            trackFilterOrder.Enabled = chkEnableFilter.Checked;
+            trackFilterOrder.Value = FlowFilter.Order;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnJapan_Click(object sender, EventArgs e)
         {
             ApplyLanguage("ja-JP");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBrazil_Click(object sender, EventArgs e)
         {
             ApplyLanguage("pt-BR");
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnEnglish_Click(object sender, EventArgs e)
         {
             ApplyLanguage("en");
+        }
+
+        private void trackFilterOrder_Scroll(object sender, EventArgs e)
+        {
+            FlowFilter.Order = trackFilterOrder.Value;
+            saveParameters();
+        }
+
+        private void chkEnableFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            trackFilterOrder.Enabled = chkEnableFilter.Checked;
+            saveParameters();
+        }
+
+        private void frmFlowTex_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
 
         }
     }

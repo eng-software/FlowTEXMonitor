@@ -120,6 +120,9 @@
   <data name="Abrir" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="AlertaI2CAddrInvalido" xml:space="preserve">
+    <value>Invalid value! Allowed values: 0x01 to 0x7F</value>
+  </data>
   <data name="AlertaTrocaI2C" xml:space="preserve">
     <value>Do you want to change the I2C address?</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="SucessoTrocaI2C" xml:space="preserve">
     <value>Address successfully changed!</value>
+  </data>
+  <data name="TituloAlertaI2CAddrInvalido" xml:space="preserve">
+    <value>Invalid Value</value>
   </data>
   <data name="TituloAlterarI2C" xml:space="preserve">
     <value>I2C address change</value>

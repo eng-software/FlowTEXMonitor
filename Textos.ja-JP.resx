@@ -120,6 +120,9 @@
   <data name="Abrir" xml:space="preserve">
     <value>開く</value>
   </data>
+  <data name="AlertaI2CAddrInvalido" xml:space="preserve">
+    <value>無効な値です！ 許可されている値: 0x01 ～ 0x7F</value>
+  </data>
   <data name="AlertaTrocaI2C" xml:space="preserve">
     <value>I2Cアドレスを変更しますか?</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="SucessoTrocaI2C" xml:space="preserve">
     <value>アドレスが正常に変更されました！</value>
+  </data>
+  <data name="TituloAlertaI2CAddrInvalido" xml:space="preserve">
+    <value>無効な値</value>
   </data>
   <data name="TituloAlterarI2C" xml:space="preserve">
     <value>I2Cアドレスの変更</value>
