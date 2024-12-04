@@ -74,7 +74,7 @@ namespace FlowTEX
             Flow = new cFlow();
             lblFlow.Text = Flow.ValueString;
             lblUnit.Text = Flow.UnitName;
-            lblTemperature.Text = FlowTEX.getTemperature().ToString(defaultTemperatureFormat) + defaultTemperatureUnit;
+            lblTemperature.Text = FlowTEX.getTemperature().ToString(defaultTemperatureFormat) + " "+ defaultTemperatureUnit;
 
             comboSerialFlowTex.DropDown += ComboSerialFlowTex_DropDown;
             comboSerialFlowTex.Items.Add("AUTO");
@@ -241,19 +241,19 @@ namespace FlowTEX
                             switch (model[13])
                             {
                                 case '0':
-                                lblStandarization.Text = "0°C";
+                                lblStandarization.Text = "0 °C";
                                 break;
 
                                 case '1':
-                                lblStandarization.Text = "15°C";
+                                lblStandarization.Text = "15 °C";
                                 break;
 
                                 case '2':
-                                lblStandarization.Text = "20°C";
+                                lblStandarization.Text = "20 °C";
                                 break;
 
                                 default:
-                                lblStandarization.Text = "21°C";
+                                lblStandarization.Text = "21 °C";
                                 break;
                             }
 
@@ -262,7 +262,7 @@ namespace FlowTEX
                         catch
                         {
                             Flow.SetRange(0);
-                            lblStandarization.Text = "21°C";
+                            lblStandarization.Text = "21 °C";
                         }
 
                     }
@@ -295,7 +295,7 @@ namespace FlowTEX
 
                 lblFlow.Text = Flow.ValueString;
                 lblUnit.Text = Flow.UnitName;
-                lblTemperature.Text = FlowTEX.getTemperature().ToString(defaultTemperatureFormat) + defaultTemperatureUnit;
+                lblTemperature.Text = FlowTEX.getTemperature().ToString(defaultTemperatureFormat) + " " + defaultTemperatureUnit;
             }
             else
             {
@@ -448,7 +448,7 @@ namespace FlowTEX
 
             lblFlow.Text = Flow.ValueString;
             lblUnit.Text = Flow.UnitName;
-            lblTemperature.Text = FlowTEX.getTemperature().ToString(defaultTemperatureFormat) + defaultTemperatureUnit;
+            lblTemperature.Text = FlowTEX.getTemperature().ToString(defaultTemperatureFormat) + " " + defaultTemperatureUnit;
             trackFilterOrder.Enabled = chkEnableFilter.Checked;
             trackFilterOrder.Value = FlowFilter.Order;
         }
